@@ -108,7 +108,7 @@ namespace ProductReviewManagement
         public void RetrieveRecordsHavingReviewNice(List<ProductReview> listProductReview)
         {
             var recordedData = from productReviews in listProductReview
-                               where (productReviews.Review =="nice")
+                               where (productReviews.Review.ToLower().Contains("nice"))
                                select productReviews;
             foreach (var list in recordedData)
             {

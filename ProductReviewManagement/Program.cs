@@ -25,7 +25,13 @@ namespace ProductReviewManagement
                 new ProductReview() { productID = 8, UserID = 1, Rating = 9, Review = "nice", isLike = true },
                 new ProductReview() { productID = 9, UserID = 1, Rating = 10, Review = "nice", isLike = true },
                 new ProductReview() { productID = 10, UserID = 1, Rating = 8, Review = "nice", isLike = true },
-                new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true }
+                new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true },
+                new ProductReview() { productID = 7, UserID = 10, Rating = 6, Review = "Good", isLike = false },
+                new ProductReview() { productID = 7, UserID = 10, Rating = 3, Review = "Good", isLike = false },
+                new ProductReview() { productID = 3, UserID = 10, Rating = 9, Review = "nice", isLike = true },
+                new ProductReview() { productID = 2, UserID = 10, Rating = 10, Review = "nice", isLike = true },
+                new ProductReview() { productID = 8, UserID = 10, Rating = 8, Review = "nice", isLike = true },
+                new ProductReview() { productID = 11, UserID = 10, Rating = 3, Review = "nice", isLike = true }
             };
             Management management = new Management();
             //UC2 Retrieve top 3 records by their rating
@@ -51,6 +57,9 @@ namespace ProductReviewManagement
             //UC11 Retrieve records having review as nice
             Console.WriteLine("=========================================================================================");
             management.RetrieveRecordsHavingReviewNice(productReviewList);
+            //UC12 Retrieve records having user id 10
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveRecordsOfParticualrUserId(productReviewList, 10);
         }
     }
 }

@@ -105,5 +105,16 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:- " + list.productID + " Average rating:- " + list.average);
             }
         }
+        public void RetrieveRecordsHavingReviewNice(List<ProductReview> listProductReview)
+        {
+            var recordedData = from productReviews in listProductReview
+                               where (productReviews.Review =="nice")
+                               select productReviews;
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
+                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+            }
+        }
     }
 }

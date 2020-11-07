@@ -48,6 +48,9 @@ namespace ProductReviewManagement
             //UC10 Retrieve Average rating for each product
             Console.WriteLine("=========================================================================================");
             management.AverageRatingOfEachProduct(productReviewList);
+            //UC11 Retrieve records having review as nice
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveRecordsHavingReviewNice(productReviewList);
         }
     }
 }

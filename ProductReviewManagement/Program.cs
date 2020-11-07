@@ -24,7 +24,11 @@ namespace ProductReviewManagement
                 new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true }
             };
             Management management = new Management();
+            //UC2 Retrieve top 3 records by their rating
             management.TopRecords(productReviewList);
+            //UC3 Retrieve selected record
+            Console.WriteLine("=========================================================================================");
+            management.SelectRecords(productReviewList);
         }
     }
 }

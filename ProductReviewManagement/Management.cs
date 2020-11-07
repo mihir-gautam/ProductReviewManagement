@@ -8,7 +8,7 @@ namespace ProductReviewManagement
     class Management
     {
         /// <summary>
-        /// Method to retrieve top 3 records having best rating.
+        /// UC2 Method to retrieve top 3 records having best rating.
         /// </summary>
         /// <param name="listProductReview"></param>
         public void TopRecords(List<ProductReview> listProductReview)
@@ -23,7 +23,7 @@ namespace ProductReviewManagement
             }
         }
         /// <summary>
-        /// Method to Retrieve products having rating > 3 and product id 1,4,9 only
+        /// UC3  Method to Retrieve products having rating > 3 and product id 1,4,9 only
         /// </summary>
         /// <param name="listProductReview"></param>
         public void SelectRecords(List<ProductReview> listProductReview)
@@ -36,6 +36,18 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
                     + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+            }
+        }
+        /// <summary>
+        /// UC4 Method to retrieve count of product reviews for each product
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void RetrieveCountOfRecords(List<ProductReview> listProductReview)
+        {
+            var recordedData = listProductReview.GroupBy(x => x.productID).Select(x => new { productID = x.Key, Count = x.Count() });
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine(list.productID + "-----------" + list.Count);
             }
         }
     }

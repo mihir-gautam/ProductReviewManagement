@@ -14,10 +14,14 @@ namespace ProductReviewManagement
                 new ProductReview() { productID = 1, UserID = 1, Rating = 2, Review = "Good", isLike = true },
                 new ProductReview() { productID = 2, UserID = 1, Rating = 4, Review = "Good", isLike = true },
                 new ProductReview() { productID = 3, UserID = 1, Rating = 5, Review = "Good", isLike = true },
+                new ProductReview() { productID = 3, UserID = 2, Rating = 8, Review = "Good", isLike = true },
+                new ProductReview() { productID = 3, UserID = 3, Rating = 2, Review = "Bad", isLike = true },
                 new ProductReview() { productID = 4, UserID = 1, Rating = 6, Review = "Good", isLike = false },
                 new ProductReview() { productID = 5, UserID = 1, Rating = 2, Review = "nice", isLike = true },
                 new ProductReview() { productID = 6, UserID = 1, Rating = 1, Review = "bad", isLike = true },
                 new ProductReview() { productID = 7, UserID = 1, Rating = 1, Review = "Good", isLike = false },
+                new ProductReview() { productID = 7, UserID = 2, Rating = 6, Review = "Good", isLike = false },
+                new ProductReview() { productID = 7, UserID = 3, Rating = 3, Review = "Good", isLike = false },
                 new ProductReview() { productID = 8, UserID = 1, Rating = 9, Review = "nice", isLike = true },
                 new ProductReview() { productID = 9, UserID = 1, Rating = 10, Review = "nice", isLike = true },
                 new ProductReview() { productID = 10, UserID = 1, Rating = 8, Review = "nice", isLike = true },
@@ -38,9 +42,12 @@ namespace ProductReviewManagement
             //UC6 Skip top 5 records and display other records
             Console.WriteLine("=========================================================================================");
             management.SkipTopRecords(productReviewList);
-            //UC7 Retrieve records having IsLike value true
+            //UC9 Retrieve records having IsLike value true
             Console.WriteLine("=========================================================================================");
             management.CheckIfIsLikeTrue(productReviewList);
+            //UC10 Retrieve Average rating for each product
+            Console.WriteLine("=========================================================================================");
+            management.AverageRatingOfEachProduct(productReviewList);
         }
     }
 }

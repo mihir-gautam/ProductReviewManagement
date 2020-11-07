@@ -92,5 +92,18 @@ namespace ProductReviewManagement
                     + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
             }
         }
+        /// <summary>
+        /// UC10 Retrieve average rating of each product
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void AverageRatingOfEachProduct(List<ProductReview> listProductReview)
+        {
+            var recordedData = listProductReview.GroupBy(x => x.productID).Select
+                                (x=> new { productID = x.Key, average = x.Average(x => x.Rating)});
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine("ProductID:- " + list.productID + " Average rating:- " + list.average);
+            }
+        }
     }
 }

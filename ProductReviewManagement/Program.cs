@@ -32,6 +32,9 @@ namespace ProductReviewManagement
             //UC4 Count of product reviews for each product id
             Console.WriteLine("=========================================================================================");
             management.RetrieveCountOfRecords(productReviewList);
+            //UC5 Retrieve only product id and review for all products
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveProductIDAndReview(productReviewList);
         }
     }
 }

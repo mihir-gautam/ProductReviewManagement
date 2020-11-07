@@ -38,6 +38,9 @@ namespace ProductReviewManagement
             //UC6 Skip top 5 records and display other records
             Console.WriteLine("=========================================================================================");
             management.SkipTopRecords(productReviewList);
+            //UC7 Retrieve records having IsLike value true
+            Console.WriteLine("=========================================================================================");
+            management.CheckIfIsLikeTrue(productReviewList);
         }
     }
 }

@@ -77,5 +77,20 @@ namespace ProductReviewManagement
                     + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
             }
         }
+        /// <summary>
+        /// UC9 Retrieve records where isLike value is true
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void CheckIfIsLikeTrue(List<ProductReview> listProductReview)
+        {
+            var recordedData = from productReviews in listProductReview
+                               where (productReviews.isLike==true)
+                               select productReviews;
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
+                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+            }
+        }
     }
 }

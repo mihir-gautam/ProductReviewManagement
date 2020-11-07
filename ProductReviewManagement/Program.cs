@@ -23,12 +23,8 @@ namespace ProductReviewManagement
                 new ProductReview() { productID = 10, UserID = 1, Rating = 8, Review = "nice", isLike = true },
                 new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true }
             };
-
-            foreach (var list in productReviewList)
-            {
-                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
-                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
-            }
+            Management management = new Management();
+            management.TopRecords(productReviewList);
         }
     }
 }

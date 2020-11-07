@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Data;
 
 namespace ProductReviewManagement
 {
@@ -78,43 +79,23 @@ namespace ProductReviewManagement
             }
         }
         /// <summary>
-        /// UC9 Retrieve records where isLike value is true
+        /// UC8 Add new records to the Data Table
         /// </summary>
         /// <param name="listProductReview"></param>
-        public void CheckIfIsLikeTrue(List<ProductReview> listProductReview)
+        public readonly DataTable dataTable = new DataTable();
+        public void InsertRecordsInDataTable(List<ProductReview> listProductReview)
         {
-            var recordedData = from productReviews in listProductReview
-                               where (productReviews.isLike==true)
-                               select productReviews;
-            foreach (var list in recordedData)
+            dataTable.Columns.Add("ProductID", typeof(int));
+            dataTable.Columns.Add("UserID", typeof(int));
+            dataTable.Columns.Add("Rating", typeof(double));
+            dataTable.Columns.Add("Review", typeof(string));
+            dataTable.Columns.Add("isLike", typeof(bool));
+
+            foreach (ProductReview productReviews in listProductReview)
             {
-                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
-                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+                dataTable.Rows.Add(productReviews.productID, productReviews.UserID, productReviews.Rating, productReviews.Review, productReviews.isLike);
             }
-        }
-        /// <summary>
-        /// UC10 Retrieve average rating of each product
-        /// </summary>
-        /// <param name="listProductReview"></param>
-        public void AverageRatingOfEachProduct(List<ProductReview> listProductReview)
-        {
-            var recordedData = listProductReview.GroupBy(x => x.productID).Select
-                                (x=> new { productID = x.Key, average = x.Average(x => x.Rating)});
-            foreach (var list in recordedData)
-            {
-                Console.WriteLine("ProductID:- " + list.productID + " Average rating:- " + list.average);
-            }
-        }
-        public void RetrieveRecordsHavingReviewNice(List<ProductReview> listProductReview)
-        {
-            var recordedData = from productReviews in listProductReview
-                               where (productReviews.Review.ToLower().Contains("nice"))
-                               select productReviews;
-            foreach (var list in recordedData)
-            {
-                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
-                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
-            }
+            Console.WriteLine("Records added into data table succesfully");
         }
     }
 }

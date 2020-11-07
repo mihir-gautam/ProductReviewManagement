@@ -63,5 +63,19 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID:- " + list.productID + " Review:- " + list.Review);
             }
         }
+        /// <summary>
+        /// UC6 Method to skip top 5 records and then retrieve rest of the records
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void SkipTopRecords(List<ProductReview> listProductReview)
+        {
+            var recordedData = (from productReviews in listProductReview
+                                select productReviews).Skip(5);
+            foreach (var list in recordedData)
+            {
+                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
+                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+            }
+        }
     }
 }

@@ -35,6 +35,9 @@ namespace ProductReviewManagement
             //UC5 Retrieve only product id and review for all products
             Console.WriteLine("=========================================================================================");
             management.RetrieveProductIDAndReview(productReviewList);
+            //UC6 Skip top 5 records and display other records
+            Console.WriteLine("=========================================================================================");
+            management.SkipTopRecords(productReviewList);
         }
     }
 }

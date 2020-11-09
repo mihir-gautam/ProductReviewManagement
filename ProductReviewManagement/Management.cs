@@ -83,7 +83,7 @@ namespace ProductReviewManagement
         /// </summary>
         /// <param name="listProductReview"></param>
         public readonly DataTable dataTable = new DataTable();
-        public void InsertRecordsInDataTable(List<ProductReview> listProductReview)
+        public DataTable InsertRecordsInDataTable(List<ProductReview> listProductReview)
         {
             dataTable.Columns.Add("ProductID", typeof(int));
             dataTable.Columns.Add("UserID", typeof(int));
@@ -96,16 +96,24 @@ namespace ProductReviewManagement
                 dataTable.Rows.Add(productReviews.productID, productReviews.UserID, productReviews.Rating, productReviews.Review, productReviews.isLike);
             }
             Console.WriteLine("Records added into data table succesfully");
+            return dataTable;
         }
-        public void RetrieveRecordsOfParticualrUserId(List<ProductReview> listProductReview, int userId)
+        /// <summary>
+        /// UC9 Retrieve records where isLike value is true
+        /// </summary>
+        /// <param name="listProductReview"></param>
+        public void RetrieveDataWhenIsLikeTrue(DataTable dataTable)
         {
-            var recordedData = from productReviews in listProductReview
-                               where (productReviews.UserID == userId)
+            var recordedData = from productReviews in dataTable.AsEnumerable()
+                               where (productReviews.Field<bool>("IsLike")==true)
                                select productReviews;
-            foreach (var list in recordedData)
+            foreach (var item in recordedData)
             {
-                Console.WriteLine("ProductID:- " + list.productID + " " + "UserID:-"
-                    + list.UserID + " " + "Rating:- " + list.Rating + " " + "Review:- " + list.Review + " " + "isLike:- " + list.isLike);
+                Console.WriteLine("ProductID: "+item.Field<int>("ProductId") + 
+                    "\t" + "UserID: "+ item.Field<int>("UserId") + 
+                    "\t" + "Rating: "+ item.Field<double>("Rating") + 
+                    "\t" + "Review: "+ item.Field<string>("Review") + 
+                    "\t" + "IsLike: "+item.Field<bool>("IsLike"));
             }
         }
     }

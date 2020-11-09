@@ -51,7 +51,10 @@ namespace ProductReviewManagement
             management.SkipTopRecords(productReviewList);
             //UC8 Insert records into data table
             Console.WriteLine("=========================================================================================");
-            management.InsertRecordsInDataTable(productReviewList);
+            DataTable dataTable = management.InsertRecordsInDataTable(productReviewList);
+            //UC9 Retrieve Data from datatable where islike = true
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveDataWhenIsLikeTrue(dataTable);
         }
     }
 }

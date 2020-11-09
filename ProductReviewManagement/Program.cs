@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ProductReviewManagement
 {
@@ -48,18 +49,9 @@ namespace ProductReviewManagement
             //UC6 Skip top 5 records and display other records
             Console.WriteLine("=========================================================================================");
             management.SkipTopRecords(productReviewList);
-            //UC9 Retrieve records having IsLike value true
+            //UC8 Insert records into data table
             Console.WriteLine("=========================================================================================");
-            management.CheckIfIsLikeTrue(productReviewList);
-            //UC10 Retrieve Average rating for each product
-            Console.WriteLine("=========================================================================================");
-            management.AverageRatingOfEachProduct(productReviewList);
-            //UC11 Retrieve records having review as nice
-            Console.WriteLine("=========================================================================================");
-            management.RetrieveRecordsHavingReviewNice(productReviewList);
-            //UC12 Retrieve records having user id 10
-            Console.WriteLine("=========================================================================================");
-            management.RetrieveRecordsOfParticualrUserId(productReviewList, 10);
+            management.InsertRecordsInDataTable(productReviewList);
         }
     }
 }

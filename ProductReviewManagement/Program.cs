@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ProductReviewManagement
 {
@@ -9,7 +10,7 @@ namespace ProductReviewManagement
         {
             Console.WriteLine("Welcome to Product Review Management Program!");
             List<ProductReview> productReviewList = new List<ProductReview>()
-            
+
             {
                 new ProductReview() { productID = 1, UserID = 1, Rating = 2, Review = "Good", isLike = true },
                 new ProductReview() { productID = 2, UserID = 1, Rating = 4, Review = "Good", isLike = true },
@@ -25,7 +26,13 @@ namespace ProductReviewManagement
                 new ProductReview() { productID = 8, UserID = 1, Rating = 9, Review = "nice", isLike = true },
                 new ProductReview() { productID = 9, UserID = 1, Rating = 10, Review = "nice", isLike = true },
                 new ProductReview() { productID = 10, UserID = 1, Rating = 8, Review = "nice", isLike = true },
-                new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true }
+                new ProductReview() { productID = 11, UserID = 1, Rating = 3, Review = "nice", isLike = true },
+                new ProductReview() { productID = 7, UserID = 10, Rating = 6, Review = "Good", isLike = false },
+                new ProductReview() { productID = 7, UserID = 10, Rating = 3, Review = "Good", isLike = false },
+                new ProductReview() { productID = 3, UserID = 10, Rating = 9, Review = "nice", isLike = true },
+                new ProductReview() { productID = 2, UserID = 10, Rating = 10, Review = "nice", isLike = true },
+                new ProductReview() { productID = 8, UserID = 10, Rating = 8, Review = "nice", isLike = true },
+                new ProductReview() { productID = 11, UserID = 10, Rating = 3, Review = "nice", isLike = true }
             };
             Management management = new Management();
             //UC2 Retrieve top 3 records by their rating
@@ -42,12 +49,15 @@ namespace ProductReviewManagement
             //UC6 Skip top 5 records and display other records
             Console.WriteLine("=========================================================================================");
             management.SkipTopRecords(productReviewList);
-            //UC9 Retrieve records having IsLike value true
+            //UC8 Insert records into data table
             Console.WriteLine("=========================================================================================");
-            management.CheckIfIsLikeTrue(productReviewList);
+            DataTable dataTable = management.InsertRecordsInDataTable(productReviewList);
+            //UC9 Retrieve Data from datatable where islike = true
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveDataWhenIsLikeTrue(dataTable);
             //UC10 Retrieve Average rating for each product
             Console.WriteLine("=========================================================================================");
-            management.AverageRatingOfEachProduct(productReviewList);
+            management.AverageRatingOfEachProduct(dataTable);
         }
     }
 }

@@ -116,6 +116,9 @@ namespace ProductReviewManagement
                     "\t" + "IsLike: " + item.Field<bool>("IsLike"));
             }
         }
+        /// UC10 method to retrieve average rating of all products
+        /// </summary>
+        /// <param name="dataTable"></param>
         public void AverageRatingOfEachProduct(DataTable dataTable)
         {
             var recordedData = from products in dataTable.AsEnumerable()
@@ -124,6 +127,43 @@ namespace ProductReviewManagement
             foreach (var item in recordedData)
             {
                 Console.WriteLine("ProductID:- " + item.ProductId + " Average rating:- " + item.Average);
+            }
+        }
+        /// <summary>
+        /// UC11 method to retrieve products having review as Nice
+        /// </summary>
+        /// <param name="dataTable"></param>
+        public void RetrieveRecordsHavingReviewNice(DataTable dataTable)
+        {
+            var recordedData = from productReviews in dataTable.AsEnumerable()
+                               where productReviews.Field<string>("Review").ToLower().Contains("nice")
+                               select productReviews;
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductId") +
+                    "\t" + "UserID: " + item.Field<int>("UserId") +
+                    "\t" + "Rating: " + item.Field<double>("Rating") +
+                    "\t" + "Review: " + item.Field<string>("Review") +
+                    "\t" + "IsLike: " + item.Field<bool>("IsLike"));
+            }
+        }
+        /// <summary>
+        /// UC12 method to retrieve records of particular user id
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <param name="userId"></param>
+        public void RetrieveRecordsOfParticualrUserId(DataTable dataTable, int userId)
+        {
+            var recordedData = from productReviews in dataTable.AsEnumerable()
+                               where (productReviews.Field<int>("UserID") == userId)
+                               select productReviews;
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductId") +
+                    "\t" + "UserID: " + item.Field<int>("UserId") +
+                    "\t" + "Rating: " + item.Field<double>("Rating") +
+                    "\t" + "Review: " + item.Field<string>("Review") +
+                    "\t" + "IsLike: " + item.Field<bool>("IsLike"));
             }
         }
     }

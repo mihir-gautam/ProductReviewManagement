@@ -58,6 +58,12 @@ namespace ProductReviewManagement
             //UC10 Retrieve Average rating for each product
             Console.WriteLine("=========================================================================================");
             management.AverageRatingOfEachProduct(dataTable);
+            //UC11 Retrieve records having review as nice
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveRecordsHavingReviewNice(dataTable);
+            //UC12 Retrieve records having user id 10
+            Console.WriteLine("=========================================================================================");
+            management.RetrieveRecordsOfParticualrUserId(dataTable, 10);
         }
     }
 }

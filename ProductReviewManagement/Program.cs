@@ -10,7 +10,7 @@ namespace ProductReviewManagement
         {
             Console.WriteLine("Welcome to Product Review Management Program!");
             List<ProductReview> productReviewList = new List<ProductReview>()
-            
+
             {
                 new ProductReview() { productID = 1, UserID = 1, Rating = 2, Review = "Good", isLike = true },
                 new ProductReview() { productID = 2, UserID = 1, Rating = 4, Review = "Good", isLike = true },
@@ -55,6 +55,9 @@ namespace ProductReviewManagement
             //UC9 Retrieve Data from datatable where islike = true
             Console.WriteLine("=========================================================================================");
             management.RetrieveDataWhenIsLikeTrue(dataTable);
+            //UC10 Retrieve Average rating for each product
+            Console.WriteLine("=========================================================================================");
+            management.AverageRatingOfEachProduct(dataTable);
         }
     }
 }

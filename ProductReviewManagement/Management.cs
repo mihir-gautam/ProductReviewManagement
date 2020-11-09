@@ -58,7 +58,7 @@ namespace ProductReviewManagement
         public void RetrieveProductIDAndReview(List<ProductReview> listProductReview)
         {
             var recordedData = (from productReviews in listProductReview
-                                select new { productReviews.productID,productReviews.Review});
+                                select new { productReviews.productID, productReviews.Review });
             foreach (var list in recordedData)
             {
                 Console.WriteLine("ProductID:- " + list.productID + " Review:- " + list.Review);
@@ -105,15 +105,25 @@ namespace ProductReviewManagement
         public void RetrieveDataWhenIsLikeTrue(DataTable dataTable)
         {
             var recordedData = from productReviews in dataTable.AsEnumerable()
-                               where (productReviews.Field<bool>("IsLike")==true)
+                               where (productReviews.Field<bool>("IsLike") == true)
                                select productReviews;
             foreach (var item in recordedData)
             {
-                Console.WriteLine("ProductID: "+item.Field<int>("ProductId") + 
-                    "\t" + "UserID: "+ item.Field<int>("UserId") + 
-                    "\t" + "Rating: "+ item.Field<double>("Rating") + 
-                    "\t" + "Review: "+ item.Field<string>("Review") + 
-                    "\t" + "IsLike: "+item.Field<bool>("IsLike"));
+                Console.WriteLine("ProductID: " + item.Field<int>("ProductId") +
+                    "\t" + "UserID: " + item.Field<int>("UserId") +
+                    "\t" + "Rating: " + item.Field<double>("Rating") +
+                    "\t" + "Review: " + item.Field<string>("Review") +
+                    "\t" + "IsLike: " + item.Field<bool>("IsLike"));
+            }
+        }
+        public void AverageRatingOfEachProduct(DataTable dataTable)
+        {
+            var recordedData = from products in dataTable.AsEnumerable()
+                               group products by products.Field<int>("ProductId") into id
+                               select new { ProductId = id.Key, Average = id.Average(a => a.Field<double>("Rating")) };
+            foreach (var item in recordedData)
+            {
+                Console.WriteLine("ProductID:- " + item.ProductId + " Average rating:- " + item.Average);
             }
         }
     }
